@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>T-shirt Store | Login</title>
+        <link href="../css/style.css" rel='stylesheet' type='text/css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        </script>
+        <!----webfonts---->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <!----//webfonts---->
+        <script src="../js/jquery.min.js"></script>
+        <!----start-alert-scroller---->
+        <script type="text/javascript" src="../js/jquery.easy-ticker.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#demo').hide();
+            $('.vticker').easyTicker();
+        });
+        </script>
+       
+        <script type="text/javascript" src="../js/move-top.js"></script>
+        <script type="text/javascript" src="../js/easing.js"></script>
+    </head>
+    <body>
+<?php
+    <div><center> <h4>Category</h4> </center> </div>
+        <br> <br> <br>
+    <div class='container'>
+        <div class="row">
+    
+            <div class="col-sm-3">
+            <form action="add.php" method="POST">
+            <div class="form-outline mb-4">
+                  <input type="text" id="nameCate" name="nameCate" class="form-control form-control-lg" require />
+                  <label class="form-label" for="form3Example3cg">Name:</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="mota" name="mota" class="form-control form-control-lg" require />
+                  <label class="form-label" for="form3Example4cdg">Description: </label>
+                </div>
+
+                  <div class="d-flex justify-content-center">
+                                <button type="submit" name="addcate" class="btn btn-primary btn-sm float-end">Add</button>
+                </div>
+        </form>
+            </div>
+
+            <div class="col-sm-9">
+               
+            <h5>Category</h5>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        $i = 0;
+                        require("../class/category.php");
+                        $cate = new category();
+                        $result = $cate->getAll();
+                        while($row = $result->fetch_array()){
+                            $i++;
+                            echo "<tr>
+                                    <td>$i</td>
+                                    <td>$row[1]</td>
+                                    <td>$row[2]</td>
+                                </tr>";
+                        }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+?>
+</body>
+</html>
